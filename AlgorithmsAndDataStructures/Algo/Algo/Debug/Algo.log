@@ -1,0 +1,8 @@
+﻿  Algo.cpp
+C:\Users\Lenovo\source\repos\Algo\Algo\Algo.cpp(67,21): warning C4101: n: неиспользованная локальная переменная
+C:\Users\Lenovo\source\repos\Algo\Algo\Algo.cpp(80,21): warning C4101: n: неиспользованная локальная переменная
+C:\Users\Lenovo\source\repos\Algo\Algo\Algo.cpp(127,21): warning C4101: n: неиспользованная локальная переменная
+  List.cpp
+  Создание кода...
+C:\Users\Lenovo\source\repos\Algo\Algo\List.cpp(217): warning C4715: List<int>::operator[]: значение возвращается не при всех путях выполнения
+  Algo.vcxproj -> C:\Users\Lenovo\source\repos\Algo\Debug\Algo.exe

@@ -1,0 +1,2 @@
+id		name		averageMark		isFree		
+1		sergei		5,4		true

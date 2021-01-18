@@ -1,0 +1,125 @@
+﻿  BClass.cpp
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(8,21): error C3646: binaryNumber: неизвестный спецификатор переопределения
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(8,21): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(11,24): error C2061: синтаксическая ошибка: идентификатор "string"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(14,30): error C2061: синтаксическая ошибка: идентификатор "string"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(18,44): error C2061: синтаксическая ошибка: идентификатор "string"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(20,12): error C3646: sum: неизвестный спецификатор переопределения
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(20,12): error C2059: синтаксическая ошибка: (
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(20,28): error C2238: непредвиденные лексемы перед ";"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(21,20): error C3646: subtraction: неизвестный спецификатор переопределения
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(21,20): error C2059: синтаксическая ошибка: (
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(21,36): error C2238: непредвиденные лексемы перед ";"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(22,17): error C3646: multiply: неизвестный спецификатор переопределения
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(22,17): error C2059: синтаксическая ошибка: (
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(22,33): error C2238: непредвиденные лексемы перед ";"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(23,17): error C3646: division: неизвестный спецификатор переопределения
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(23,17): error C2059: синтаксическая ошибка: (
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(23,33): error C2238: непредвиденные лексемы перед ";"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(25,24): error C3646: getBinaryNumber: неизвестный спецификатор переопределения
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(25,24): error C2059: синтаксическая ошибка: (
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(25,26): error C2238: непредвиденные лексемы перед ";"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(19,1): error C2511: BinaryNumber::BinaryNumber(std::string,int): перегруженная функция-член не найдена в "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(4): message : см. объявление "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(20,2): error C2671: BinaryNumber::{ctor}: статические функции-члены не имеют указателей "this"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(21,2): error C2671: BinaryNumber::{ctor}: статические функции-члены не имеют указателей "this"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(22,24): error C2660: BinaryNumber::toDecimal: функция не принимает 1 аргументов
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(11,7): message : см. объявление "BinaryNumber::toDecimal"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(45,5): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(48,12): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(48,34): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(48,4): error C2672: "std::reverse": не найдена соответствующая перегруженная функция
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(48,52): error C2780: void std::reverse(const _BidIt,const _BidIt): требует аргументов: 2, имеется: 1
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\xutility(4588): message : см. объявление "std::reverse"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(51,11): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(53,5): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(63,5): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(66,12): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(66,34): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(66,4): error C2672: "std::reverse": не найдена соответствующая перегруженная функция
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(66,52): error C2780: void std::reverse(const _BidIt,const _BidIt): требует аргументов: 2, имеется: 1
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\xutility(4588): message : см. объявление "std::reverse"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(69,11): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(71,5): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(73,20): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(75,9): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(77,6): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(81,6): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(84,12): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(84,34): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(84,4): error C2672: "std::reverse": не найдена соответствующая перегруженная функция
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(84,52): error C2780: void std::reverse(const _BidIt,const _BidIt): требует аргументов: 2, имеется: 1
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\xutility(4588): message : см. объявление "std::reverse"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(85,20): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(87,9): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(89,6): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(94,6): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(97,12): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(97,34): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(97,4): error C2672: "std::reverse": не найдена соответствующая перегруженная функция
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(97,52): error C2780: void std::reverse(const _BidIt,const _BidIt): требует аргументов: 2, имеется: 1
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\xutility(4588): message : см. объявление "std::reverse"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(108,1): error C2511: void BinaryNumber::toDecimal(std::string): перегруженная функция-член не найдена в "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(4): message : см. объявление "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(110,22): error C2597: недопустимая ссылка на нестатический член "BinaryNumber::bit"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(110,22): error C3867: "BinaryNumber::bit": нестандартный синтаксис; используйте "&", чтобы создать указатель на член
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(112,2): error C2597: недопустимая ссылка на нестатический член "BinaryNumber::decimalNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(116,17): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(129,17): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(140,17): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(144,5): error C2597: недопустимая ссылка на нестатический член "BinaryNumber::decimalNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(149,5): error C2597: недопустимая ссылка на нестатический член "BinaryNumber::decimalNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(153,20): error C2597: недопустимая ссылка на нестатический член "BinaryNumber::decimalNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(157,17): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(161,5): error C2597: недопустимая ссылка на нестатический член "BinaryNumber::decimalNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(166,5): error C2597: недопустимая ссылка на нестатический член "BinaryNumber::decimalNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(178,22): error C2039: getBinaryNumber: не является членом "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(4): message : см. объявление "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(180,9): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(183,22): error C2039: sum: не является членом "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(4): message : см. объявление "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(185,51): error C2039: getBinaryNumber: не является членом "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(4): message : см. объявление "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(186,28): error C2065: binaryNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(189,6): error C2065: decimalNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(189,52): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(189,5): error C2661: pow: нет перегруженной функции, принимающей 1 аргументов
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(190,6): error C2065: decimalNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(190,54): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(190,1): error C2661: pow: нет перегруженной функции, принимающей 1 аргументов
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(194,17): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(251,22): error C2039: subtraction: не является членом "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(4): message : см. объявление "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(254,6): error C2065: decimalNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(254,52): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(254,5): error C2661: pow: нет перегруженной функции, принимающей 1 аргументов
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(255,6): error C2065: decimalNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(255,54): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(255,1): error C2661: pow: нет перегруженной функции, принимающей 1 аргументов
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(257,22): error C2065: decimalNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(257,37): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(258,46): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(259,21): error C2039: sum: не является членом "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(4): message : см. объявление "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(268,22): error C2039: multiply: не является членом "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(4): message : см. объявление "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(274,6): error C2065: decimalNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(274,52): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(274,5): error C2661: pow: нет перегруженной функции, принимающей 1 аргументов
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(275,6): error C2065: decimalNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(275,54): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(275,1): error C2661: pow: нет перегруженной функции, принимающей 1 аргументов
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(279,33): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(284,6): error C2065: decimalNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(286,22): error C2065: decimalNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(292,23): error C2065: decimalNumber: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(294,40): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(295,40): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(298,26): error C2039: sum: не является членом "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(4): message : см. объявление "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(299,36): error C2660: BinaryNumber::setBinaryNumber: функция не принимает 1 аргументов
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(14,7): message : см. объявление "BinaryNumber::setBinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(304,49): error C2065: bit: необъявленный идентификатор
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(305,35): error C2039: getBinaryNumber: не является членом "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.h(4): message : см. объявление "BinaryNumber"
+C:\Users\Lenovo\source\repos\BClass\BClass\BClass.cpp(305,35): fatal error C1003: число ошибок превышает 100; остановка компиляции

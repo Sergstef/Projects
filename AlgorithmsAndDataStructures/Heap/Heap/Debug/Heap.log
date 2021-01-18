@@ -1,0 +1,5 @@
+﻿  Heap.cpp
+  Main.cpp
+C:\Users\Lenovo\source\repos\Heap\Heap\Main.cpp(49,22): warning C4101: n: неиспользованная локальная переменная
+  Создание кода...
+  Heap.vcxproj -> C:\Users\Lenovo\source\repos\Heap\Debug\Heap.exe
