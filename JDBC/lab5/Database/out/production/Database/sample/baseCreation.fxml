@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.baseCreationController">
+    <children>
+        <AnchorPane layoutY="67.0" prefHeight="333.0" prefWidth="700.0" style="-fx-background-color: white; -fx-border-color: black;">
+            <children>
+                <Button fx:id="baseCreationButton" layoutX="224.0" layoutY="234.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="254.0" text="Создать">
+                    <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                    </font>
+                </Button>
+                <Text layoutX="192.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Создание базы данных">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+                <TextField fx:id="baseNameField" layoutX="273.0" layoutY="83.0" prefHeight="35.0" prefWidth="157.0" text="Название базы">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </TextField>
+            <TextField fx:id="adminPassField" layoutX="390.0" layoutY="149.0" prefHeight="35.0" prefWidth="157.0" text="Пароль">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="adminNameField" layoutX="126.0" layoutY="149.0" prefHeight="35.0" prefWidth="157.0" text="Имя админа">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            </children>
+        </AnchorPane>
+        <Label layoutX="275.0" layoutY="8.0" text="Datebase" textFill="WHITE">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <Button fx:id="homeButton" layoutX="587.0" layoutY="22.0" mnemonicParsing="false" text="Назад" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,726 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+exec sql include sqlca;
+exec sql include pgtypes_date;
+
+int create_database(){
+    EXEC SQL SET AUTOCOMMIT TO ON;
+    EXEC SQL create database newdatabase;
+    EXEC SQL SET AUTOCOMMIT TO OFF;
+    cout << "Database was created" << endl;
+	return 1;
+}
+
+void create_functions(){
+	EXEC SQL create function addDataToCars(mark text, owner text, sale integer) returns void as $$
+	begin
+		insert into автомобиль (марка, "атп-владелец", "скидка, %") values (mark, owner, sale);
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+	
+	EXEC SQL create function addDataToDetails(detail text, seller text, cost integer, maxdetails integer) returns void as $$
+	begin
+		insert into детали (деталь, продавец, "стоимость, руб", "макс. кол-во") values (detail, seller, cost, maxDetails);
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+	
+	EXEC SQL create function addDataToFix(car text, monthd text, garage integer, details integer, numberdet integer, totalcost integer) returns void as $$
+	begin
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (car, monthD, garage, details, numberDet, totalCost);
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+	
+	EXEC SQL create function addDataToGarage(number text, place text, money integer) returns void as $$
+	begin
+		insert into гараж (номер, расположение, "комиссионные, %") values (number, place, money);
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+
+	EXEC SQL create function selectSomething() returns setof автомобиль as $$
+	begin
+		return query
+		select идентификатор, марка, "атп-владелец", "скидка, %" from автомобиль
+		where марка = 'Газ-52';
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+	
+	EXEC SQL create function createTables() returns void as $$
+	begin
+		CREATE TABLE автомобиль (
+		идентификатор int primary key generated always as identity,
+		марка varchar(100) not null,
+		"атп-владелец" varchar(20) not null,
+		"скидка, %" int not null);
+		CREATE TABLE гараж (
+		идентификатор int primary key generated always as identity,
+		номер varchar(100) not null,
+		расположение varchar(50) not null,
+		"комиссионные, %" int not null);
+		CREATE TABLE детали (
+		идентификатор int primary key generated always as identity,
+		деталь varchar(50) not null,
+		продавец varchar(50) not null,
+		"стоимость, руб" int not null,
+		"макс. кол-во" int not null);
+		CREATE TABLE ремонт (
+		"номер заказа" int primary key generated always as identity,
+		автомобиль varchar(10) not null,
+		дата varchar(20) not null,
+		гараж int not null,
+		детали int not null,
+		"кол-во" int not null,
+		"общая стоимость, руб" int not null);
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+	
+	EXEC SQL create function clearTable(tablename text) returns void as $$
+	begin
+		execute format('truncate table %s', tableName);
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+	
+	EXEC SQL create function createAdmin(namet text, passwordt text) returns void as $$
+	begin
+		execute format('create user %s with password ''%s''', nameT, passwordT);
+		execute format('ALTER USER %s WITH SUPERUSER CREATEDB CREATEROLE LOGIN INHERIT REPLICATION', nameT);
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+	
+	EXEC SQL create function createDatabase(dbname text) returns void as $$
+	begin
+		execute format('create database %s', dbName);
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+	
+	EXEC SQL create function createUser(namet text, passwordt text) returns void as $$
+	begin
+		execute format('create user %s with password ''%s''', nameT, passwordT);
+		execute format('grant select on all tables in schema public to %s', nameT);
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+	
+	EXEC SQL create function deleteData() returns void as $$
+	begin
+		delete from автомобиль where марка = 'Газ-24';
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+	
+	EXEC SQL create function deleteDatabase(dbname character varying) returns void as $$
+	begin
+		execute format('drop database %s', dbName);
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+	
+	EXEC SQL create function insertData() returns void as $$
+	begin
+		insert into автомобиль (марка, "атп-владелец", "скидка, %") values ('Газ-24', 'АТП1', 4);
+		insert into автомобиль (марка, "атп-владелец", "скидка, %") values ('Газ-52', 'АТП1', 0);
+		insert into автомобиль (марка, "атп-владелец", "скидка, %") values ('Зил-130', 'АТП3', 3);
+		insert into автомобиль (марка, "атп-владелец", "скидка, %") values ('Зил-133', 'АТП4', 5);
+		insert into автомобиль (марка, "атп-владелец", "скидка, %") values ('Газ-1222', 'АТП5', 4);
+		insert into гараж (номер, расположение, "комиссионные, %") values ('N1', 'АТП1', 3);
+		insert into гараж (номер, расположение, "комиссионные, %") values ('N2', 'АТП1', 3);
+		insert into гараж (номер, расположение, "комиссионные, %") values ('N1', 'АТП2', 4);
+		insert into гараж (номер, расположение, "комиссионные, %") values ('N3', 'АТП2', 4);
+		insert into гараж (номер, расположение, "комиссионные, %") values ('N4', 'АТП4', 4);
+		insert into гараж (номер, расположение, "комиссионные, %") values ('N5', 'АТП5', 3);
+		insert into детали (деталь, продавец, "стоимость, руб", "макс. кол-во") values ('Трубка', 'АТП1', 10000, 100);
+		insert into детали (деталь, продавец, "стоимость, руб", "макс. кол-во") values ('Скоба', 'АТП1', 5000, 230);
+		insert into детали (деталь, продавец, "стоимость, руб", "макс. кол-во") values ('Картер', 'АТП3', 40000, 70);
+		insert into детали (деталь, продавец, "стоимость, руб", "макс. кол-во") values ('Штуцер', 'АТП2', 7000, 200);
+		insert into детали (деталь, продавец, "стоимость, руб", "макс. кол-во") values ('Прокладка', 'АТП2', 5000, 1200);
+		insert into детали (деталь, продавец, "стоимость, руб", "макс. кол-во") values ('Пробка', 'АТП1', 5000, 300);
+		insert into детали (деталь, продавец, "стоимость, руб", "макс. кол-во") values ('Толкатель', 'АТП1', 11000, 120);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (4, 'Январь', 3, 7, 7, 77000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (3, 'Февраль', 3, 2, 4, 20000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (3, 'Февраль', 5, 4, 1, 7000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (3, 'Март', 6, 5, 6, 30000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (2, 'Апрель', 6, 7, 9, 99000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (4, 'Апрель', 6, 6, 8, 40000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (1, 'Май', 5, 7, 3, 33000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (1, 'Май', 3, 3, 2, 80000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (3, 'Май', 6, 1, 16, 160000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (3, 'Май', 5, 5, 21, 105000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (2, 'Июнь', 1, 1, 5, 50000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (5, 'Июнь', 6, 2, 3, 15000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (3, 'Август', 2, 6, 6, 30000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (4, 'Август', 5, 1, 4, 40000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (4, 'Август', 1, 7, 7, 77000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (5, 'Август', 1, 6, 1, 5000);
+		insert into ремонт (автомобиль, дата, гараж, детали, "кол-во", "общая стоимость, руб") values (2, 'Август', 4, 2, 1, 5000);
+	end
+	$$ language plpgsql;
+	EXEC SQL commit;
+}
+
+int create_conn(const char *t, const char *u, const char *p){
+    EXEC SQL BEGIN DECLARE SECTION;
+    char dbname[1024];
+    const char *target = t;
+    const char *user = u;
+    const char *passwd = p;
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL CONNECT TO :target AS con USER :user/:passwd;
+    if(sqlca.sqlcode!=0){
+            return 0;
+        }
+    EXEC SQL COMMIT;
+    EXEC SQL SELECT current_database() INTO :dbname;
+    cout << "Current database - " << dbname << endl;
+    return 1;
+}
+
+int create_role(string role, const char *name, const char *pass){
+	EXEC SQL BEGIN DECLARE SECTION;
+    const char *n = name;
+    const char *p = pass;
+    EXEC SQL END DECLARE SECTION;
+    if (role == "admin") {
+		EXEC SQL select createadmin(:n, :p);
+		EXEC SQL commit;
+		cout << "Admin was created" << endl;
+	}
+	else {
+		EXEC SQL select createuser(:n, :p);
+		EXEC SQL commit;
+		cout << "User was created" << endl;
+	}
+    return 1;
+
+}
+
+void cr_tables(){
+    EXEC SQL select createtables();
+    EXEC SQL commit;
+    cout << "Таблица создана\n";
+}
+
+void addDataToCars(const char *mark, const char *owner, int sale) {
+	EXEC SQL BEGIN DECLARE SECTION;
+    const char *m = mark;
+    const char *o = owner;
+	int s = sale;
+    EXEC SQL END DECLARE SECTION;
+	EXEC SQL select addDataToCars(:m, :o, :s);
+	EXEC SQL commit;
+	cout << "Data added to cars" << endl;
+}
+
+void addDataToDetails(const char *detail, const char *seller, int cost, int maxdetails) {
+	EXEC SQL BEGIN DECLARE SECTION;
+    const char *d = detail;
+    const char *s = seller;
+	int c = cost;
+	int m = maxdetails;
+    EXEC SQL END DECLARE SECTION;
+	EXEC SQL select addDataToDetails(:d, :s, :c, :m);
+	EXEC SQL commit;
+	cout << "Data added to details" << endl;
+}
+
+void addDataToFix(const char *car, const char *monthd, int garage, int details, int numberdet, int totalcost) {
+	EXEC SQL BEGIN DECLARE SECTION;
+    const char *c = car;
+    const char *m = monthd;
+	int g = garage;
+	int d = details;
+	int n = numberdet;
+	int t = totalcost;
+    EXEC SQL END DECLARE SECTION;
+	EXEC SQL select addDataToFix(:c, :m, :g, :d, :n, :t);
+	EXEC SQL commit;
+	cout << "Data added to fix" << endl;
+}
+
+void addDataToGarage(const char *number, const char *place, int money) {
+	EXEC SQL BEGIN DECLARE SECTION;
+    const char *n = number;
+    const char *p = place;
+	int m = money;
+    EXEC SQL END DECLARE SECTION;
+	EXEC SQL select addDataToGarage(:n, :p, :m);
+	EXEC SQL commit;
+	cout << "Data added to garage" << endl;
+}
+
+void clear_table(const char *name){
+	EXEC SQL BEGIN DECLARE SECTION;
+    const char *n = name;
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL select cleartable(:n);
+	if (sqlca.sqlcode != 0){
+        cout << sqlca.sqlcode << endl;
+        }
+    EXEC SQL commit;
+    cout << "Table cleared" << endl;
+}
+
+void create_tables(){
+    EXEC SQL select createtables();
+    EXEC SQL commit;
+    cout << "Tables created" << endl;
+}
+
+void deleteData(){
+    EXEC SQL select deletedata();
+    EXEC SQL commit;
+    cout << "Data deleted from cars with mark Gaz" << endl;
+}
+
+void insertData(){
+    EXEC SQL select insertdata();
+    EXEC SQL commit;
+    cout << "Data inserted" << endl;
+}
+
+void selectSomething(){
+    EXEC SQL BEGIN DECLARE SECTION;
+    int id;
+    varchar m[32];
+    varchar o[32];
+	int sale;
+    EXEC SQL END DECLARE SECTION;
+
+    EXEC SQL declare search_res cursor for select * from selectsomething();
+
+    EXEC SQL open search_res;
+    while(1){
+        exec sql fetch search_res into :id,:m,:o,:sale;
+        if(sqlca.sqlcode!=0){
+			cout << sqlca.sqlcode << endl;
+            break;
+        }
+        printf("id=%d, mark=%s, owner=%s, sale=%d\n", id, m.arr, o.arr, sale);
+    }
+    
+    EXEC SQL close search_res;
+    EXEC SQL commit;
+}
+
+void deleteDatabase(){
+    EXEC SQL SET AUTOCOMMIT TO ON;
+    EXEC SQL drop database newdatabase;
+    EXEC SQL SET AUTOCOMMIT TO OFF;
+    cout << "Database deleted" << endl;
+}
+
+void roles_proc(){
+    EXEC SQL create or replace procedure create_start_guest() as $$
+        begin
+            create role guest_ password '1' login;
+            grant select on table grocery to guest_;
+        end;
+    $$ language plpgsql;
+    exec sql commit;
+
+    EXEC SQL create or replace procedure create_guest() as $$
+        begin
+            create role new_guest password '1' login;
+            grant select on table grocery to new_guest;
+        end;
+    $$ language plpgsql;
+    exec sql commit;
+
+        EXEC SQL create or replace procedure create_admin() as $$
+        begin
+            create role new_admin password '1' superuser;
+        end;
+    $$ language plpgsql;
+    exec sql commit;
+}
+
+void fill_table(){
+    EXEC SQL create procedure fill_table() as $$
+	INSERT INTO grocery VALUES
+    (001, 'Холодильник', true),
+    (002, 'Стелаж', false),
+    (003, 'Склад', false)
+    $$ language sql;
+    EXEC SQL call fill_table();
+    EXEC SQL commit;
+    cout << "Таблица заполнена\n";
+}
+
+int ins_row(){
+    cout << "Введите данные новой строки\n";
+    cout << "ID - int:\n";
+    int i;
+    cin >> i;
+    if (cin.fail()){
+        cout << "Неверный ввод ID\n";
+        return 0;
+    }
+        
+    cout << "Местоположение товара - String:\n";
+    string p;
+    cin >> p;
+    if (cin.fail()){
+        cout << "Неверный ввод местоположения\n";
+        return 0;
+    }
+
+    cout << "Не утилизирован ли товар - boolean:\n";
+    bool r;
+    cin >> r;
+    if (cin.fail()){
+        cout << "Неверный ввод утилизированности товара\n";
+        return 0;
+    }
+
+    EXEC SQL BEGIN DECLARE SECTION;
+    int id = i;
+    const char *place = p.c_str();
+    bool rem = r;
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL call insert_row(:id, :place, :rem);
+    if (sqlca.sqlcode != 0){
+        cout << "Невозможно добавить указанную строку (повторение первичного ключа)\n";
+        return 0;
+    }
+    EXEC SQL COMMIT;
+
+    cout << "Поле упешно добавлено\n";
+    return 1;
+}
+
+void drop_db(){
+    EXEC SQL DISCONNECT ALL;
+    create_conn("TASK_HSE@localhost:5432", "postgres", "8850");
+    EXEC SQL SET AUTOCOMMIT TO ON;
+    EXEC SQL drop database grocery_shop_cpp;
+    EXEC SQL SET AUTOCOMMIT TO OFF;
+    EXEC SQL create or replace procedure drop_role_() as $$
+        drop role guest_;
+    $$ language sql;
+    EXEC SQL create or replace procedure drop_role_new_guest() as $$
+        drop role new_guest;
+    $$ language sql;
+    EXEC SQL create or replace procedure drop_role_new_admin() as $$
+        drop role new_admin;
+    $$ language sql;
+    EXEC SQL call drop_role_();
+    EXEC SQL COMMIT;
+    EXEC SQL call drop_role_new_guest();
+    EXEC SQL COMMIT;
+    EXEC SQL call drop_role_new_admin();
+    EXEC SQL COMMIT;
+    cout << "База данных удалена\n";
+    EXEC SQL DISCONNECT ALL;
+}
+
+int update_row(){
+    cout << "Введите ID, по которому обновляеются данные:\n";
+    int i;
+    cin >> i;
+    if (cin.fail()){
+        cout << "Неверный ввод ID\n";
+        return 0;
+    }
+        
+    cout << "Введите новое местоположение товара:\n";
+    string p;
+    cin >> p;
+    if (cin.fail()){
+        cout << "Неверный ввод местоположения\n";
+        return 0;
+    }
+
+    cout << "Введите новые данные об утилизованности товара:\n";
+    bool r;
+    cin >> r;
+    if (cin.fail()){
+        cout << "Неверный ввод утилизированности товара\n";
+        return 0;
+    }
+
+    EXEC SQL BEGIN DECLARE SECTION;
+    int id = i;
+    const char *place = p.c_str();
+    bool rem = r;
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL call update_row(:id, :place, :rem);
+    EXEC SQL COMMIT;
+    cout << "Строка изменена\n";
+    return 1;
+}
+
+int delete_rows(){
+    cout << "Введите местоположение, по которому будет производиться удаление:\n";
+    string p;
+    cin >> p;
+    if (cin.fail()){
+        cout << "Неверный ввод местоположения\n";
+        return 0;
+    }
+
+    EXEC SQL BEGIN DECLARE SECTION;
+    const char *place = p.c_str();
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL call delete_rows(:place);
+    EXEC SQL COMMIT;
+    cout << "Соответствующие строки удалены\n";
+    return 1;
+}
+
+void show_table(){
+    EXEC SQL BEGIN DECLARE SECTION;
+    int id;
+    varchar pp[32];
+    varchar rem[32];
+    EXEC SQL END DECLARE SECTION;
+
+    EXEC SQL declare full_t cursor for select * from grocery;
+
+    EXEC SQL open full_t;
+    while(1){
+        exec sql fetch full_t into :id,:pp,:rem;
+        if(sqlca.sqlcode!=0){
+            break;
+        }
+        printf("id=%d, productplace=%s, isremoved=%s\n", id, pp.arr, rem.arr);
+    }
+    
+    EXEC SQL close full_t;
+    EXEC SQL commit;
+}
+
+int main() {
+	cout << "Select:" << endl;
+	cout << "1. Enter" << endl;
+	cout << "2. Register" << endl;
+	int sel;
+	cin >> sel;
+	while (sel != 1 && sel != 2){
+        cout << "Try again" << endl;
+        cin >> sel;
+    }
+	string password;
+	string name;
+		switch(sel) {
+			case 1: {
+					cout << "Enter adress and database:" << endl;
+					string adress;
+					cin >> adress;
+					const char *t = adress.c_str();
+					cout << "Enter type of user(admin or user):" << endl;
+					string type;
+					cin >> type;
+					cout << "Enter name of user:" << endl;
+					cin >> name;
+					const char *n = name.c_str();
+					cout << "Enter password:" << endl;
+					cin >> password;
+					const char *p = password.c_str();
+					cout << "Database connection..." << endl;
+					create_conn(t, n, p);
+					if(type == "admin") {
+						while(1) {
+							cout << "Select option" << endl;
+							cout << "1. Create database" << endl;
+							cout << "2. Add data to cars table" << endl;
+							cout << "3. Add data to details table" << endl;
+							cout << "4. Add data to fix table" << endl;
+							cout << "5. Add data to garage table" << endl;
+							cout << "6. Clear table" << endl;
+							cout << "7. Create user" << endl;
+							cout << "8. Create tables" << endl;
+							cout << "9. Insert data to tables" << endl;
+							cout << "10. Delete data from table" << endl;
+							cout << "11. Delete database" << endl;
+							cout << "12. Select data" << endl;
+							cout << "13. Create functions" << endl;
+							cout << "14. Exit" << endl;
+							int option;
+							cin >> option;
+							switch (option) {
+								case 1: {
+									create_database();
+									break;
+								}
+								case 2: {
+									cout << "Enter mark:" << endl;
+									string mark;
+									cin >> mark;
+									const char *m = mark.c_str();
+									cout << "Enter owner:" << endl;
+									string owner;
+									cin >> owner;
+									const char *o = owner.c_str();
+									cout << "Enter sale:" << endl;
+									int sale;
+									cin >> sale;
+									addDataToCars(m, o, sale);
+									break;
+								}
+								case 3: {
+									cout << "Enter detail:" << endl;
+									string detail;
+									cin >> detail;
+									const char *d = detail.c_str();
+									cout << "Enter seller:" << endl;
+									string seller;
+									cin >> seller;
+									const char *s = seller.c_str();
+									cout << "Enter cost:" << endl;
+									int cost;
+									cin >> cost;
+									cout << "Enter maxdetails:" << endl;
+									int maxdetails;
+									cin >> maxdetails;
+									addDataToDetails(d, s, cost, maxdetails);
+									break;
+								}
+								case 4: {
+									cout << "Enter car:" << endl;
+									string car;
+									cin >> car;
+									const char *c = car.c_str();
+									cout << "Enter month:" << endl;
+									string month;
+									cin >> month;
+									const char *m = month.c_str();
+									cout << "Enter garage:" << endl;
+									int garage;
+									cin >> garage;
+									cout << "Enter details:" << endl;
+									int details;
+									cin >> details;
+									cout << "Enter number:" << endl;
+									int number;
+									cin >> number;
+									cout << "Enter totalcost:" << endl;
+									int totalcost;
+									cin >> totalcost;
+									addDataToFix(c, m, garage, details, number, totalcost);
+									break;
+								}
+								case 5: {
+									cout << "Enter number:" << endl;
+									string number;
+									cin >> number;
+									const char *n = number.c_str();
+									cout << "Enter place:" << endl;
+									string place;
+									cin >> place;
+									const char *p = place.c_str();
+									cout << "Enter money:" << endl;
+									int money;
+									cin >> money;
+									addDataToGarage(n, p, money);
+									break;
+								}
+								case 6: {
+									cout << "Enter name:" << endl;
+									string name;
+									cin >> name;
+									const char *n = name.c_str();
+									clear_table(n);
+									break;
+								}
+								case 7: {
+									cout << "Enter your role(admin or user)" << endl;
+									string role;
+									cin >> role;
+									const char *r = role.c_str();
+									cout << "Enter name:" << endl;
+									cin >> name;
+									const char *n = name.c_str();
+									cout << "Enter password:" << endl;
+									cin >> password;
+									const char *p = password.c_str();
+									create_role(r, n, p);
+									break;
+								}
+								case 8: {
+									create_tables();
+									break;
+								}
+								case 9: {
+									insertData();
+									break;
+								}
+								case 10: {
+									deleteData();
+									break;
+								}
+								case 11: {
+									deleteDatabase();
+									break;
+								}
+								case 12: {
+									selectSomething();
+									break;
+								}
+								case 13: {
+									EXEC SQL DISCONNECT ALL;
+									create_conn("newdatabase@localhost:5432", n, p);
+									create_functions();
+									EXEC SQL DISCONNECT ALL;
+									create_conn(t, n, p);
+									break;
+								}
+								case 14: {
+									EXEC SQL DISCONNECT ALL;
+									return 0;
+								}
+							}
+						}
+					}
+					else {
+						while(1) {
+							cout << "Select option" << endl;
+							cout << "1. Select data" << endl;
+							cout << "2. Exit" << endl;
+							int option;
+							cin >> option;
+							switch (option) {
+								case 1: {
+									selectSomething();
+									break;
+								}
+								case 2: {
+									EXEC SQL DISCONNECT ALL;
+									return 0;
+								}
+							}
+						}
+					}
+					break;
+				}
+				
+			case 2: {
+					create_conn("postgres@localhost:5432", "postgres", "qwer");
+					cout << "Enter your role(admin or user)" << endl;
+					string role;
+					cin >> role;
+					const char *r = role.c_str();
+					cout << "Enter name:" << endl;
+					cin >> name;
+					const char *n = name.c_str();
+					cout << "Enter password:" << endl;
+					cin >> password;
+					const char *p = password.c_str();
+					cout << "Role creation..." << endl;
+					create_role(r, n, p);
+					string a;
+					cin >> a;
+					break;
+				}
+		}
+    
+}
